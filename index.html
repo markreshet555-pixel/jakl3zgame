@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Aesthetic Terminal</title>
+    <style>
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            background-color: #1f2833;
+            border: 1px solid #45a29e;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 25px rgba(69, 162, 158, 0.2);
+            text-align: center;
+            width: 450px;
+        }
+        .kanji {
+            font-size: 48px;
+            color: #66fcf1;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
+        }
+        h1 {
+            font-size: 18px;
+            color: #66fcf1;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .quote-box {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #c5c6c7;
+            min-height: 60px;
+            margin-bottom: 25px;
+            border-left: 3px solid #45a29e;
+            padding-left: 10px;
+            text-align: left;
+        }
+        button {
+            background-color: transparent;
+            color: #66fcf1;
+            border: 1px solid #66fcf1;
+            padding: 10px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #66fcf1;
+            color: #0b0c10;
+            box-shadow: 0 0 15px #66fcf1;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 11px;
+            color: #45a29e;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
 
+    <div class="container">
+        <div class="kanji" id="kanji-symbol">侍</div>
+        <h1>Путь Самурая / 精神</h1>
+        
+        <div class="quote-box" id="quote-display">
+            "Даже если самураю придется умереть, он должен умереть с мечом в руке."
+        </div>
+
+        <button onclick="getNewWisdom()">Получить мудрость / 禅</button>
+        
+        <div class="footer">TOKYO // 2026 EDITION</div>
+    </div>
+
+    <script>
+        const wisdoms = [
+            { kanji: "侍", quote: "«Даже если самураю придется умереть, он должен умереть с мечом в руке.» — Миямото Мусаси" },
+            { kanji: "絆", quote: "«Упади семь раз, поднимись восемь.» — Японская пословица" },
+            { kanji: "忍", quote: "«Побеждает тот, кто побеждает самого себя.» — Дзен-мудрость" },
+            { kanji: "桜", quote: "«Цветок прекрасен потому, что он не вечен.» — Моно-но аварэ" },
+            { kanji: "道", quote: "«Сделай сегодня то, что другие не хотят, завтра будешь жить так, как другие не могут.»" },
+            { kanji: "静", quote: "«Тишина внутри тебя — это истинный источник силы в бушующем мире.»" }
+        ];
+
+        function getNewWisdom() {
+            const randomIndex = Math.floor(Math.random() * wisdoms.length);
+            const selected = wisdoms[randomIndex];
+
+            document.getElementById("kanji-symbol").innerText = selected.kanji;
+            document.getElementById("quote-display").innerText = selected.quote;
+        }
+    </script>
+</body>
+</html>
