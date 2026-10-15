@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Japanese Aesthetic Terminal</title>
+    <title>Traditional Japanese Garden & Sakura</title>
     <style>
         body {
-            background-color: #0b0c10;
-            color: #c5c6c7;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: #fdfbf7;
+            color: #4a403a;
+            font-family: 'Georgia', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -17,94 +17,89 @@
             margin: 0;
             overflow: hidden;
         }
-        .container {
-            background-color: #1f2833;
-            border: 1px solid #45a29e;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 25px rgba(69, 162, 158, 0.2);
+        .card {
+            background-color: #fff9f5;
+            border: 1px solid #e8d3c7;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(180, 140, 130, 0.15);
             text-align: center;
-            width: 450px;
+            width: 480px;
         }
-        .kanji {
-            font-size: 48px;
-            color: #66fcf1;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(102, 252, 241, 0.5);
+        .sakura-icon {
+            font-size: 42px;
+            color: #e07a93;
+            margin-bottom: 15px;
         }
         h1 {
-            font-size: 18px;
-            color: #66fcf1;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
+            font-size: 20px;
+            color: #5c4033;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
             text-transform: uppercase;
         }
-        .quote-box {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #c5c6c7;
-            min-height: 60px;
-            margin-bottom: 25px;
-            border-left: 3px solid #45a29e;
-            padding-left: 10px;
+        .quote {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #6b5b52;
+            min-height: 80px;
+            margin-bottom: 30px;
+            border-left: 3px solid #e07a93;
+            padding-left: 15px;
             text-align: left;
+            font-style: italic;
         }
         button {
-            background-color: transparent;
-            color: #66fcf1;
-            border: 1px solid #66fcf1;
-            padding: 10px 20px;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
+            background-color: #e07a93;
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            font-family: 'Georgia', serif;
+            font-size: 14px;
             cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            border-radius: 6px;
+            transition: background 0.3s ease;
             width: 100%;
         }
         button:hover {
-            background-color: #66fcf1;
-            color: #0b0c10;
-            box-shadow: 0 0 15px #66fcf1;
+            background-color: #c9657f;
         }
         .footer {
-            margin-top: 20px;
-            font-size: 11px;
-            color: #45a29e;
-            letter-spacing: 1px;
+            margin-top: 25px;
+            font-size: 12px;
+            color: #b09b90;
+            letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="kanji" id="kanji-symbol">侍</div>
-        <h1>Путь Самурая / 精神</h1>
+    <div class="card">
+        <div class="sakura-icon">🌸</div>
+        <h1>Spring & Sakura / 桜</h1>
         
-        <div class="quote-box" id="quote-display">
-            "Даже если самураю придется умереть, он должен умереть с мечом в руке."
+        <div class="quote" id="quote-display">
+            "In the cherry blossom's shade there is no such thing as a stranger." — Kobayashi Issa
         </div>
 
-        <button onclick="getNewWisdom()">Получить мудрость / 禅</button>
+        <button onclick="nextQuote()">Discover Wisdom / 禅</button>
         
-        <div class="footer">TOKYO // 2026 EDITION</div>
+        <div class="footer">TRADITIONAL JAPAN</div>
     </div>
 
     <script>
-        const wisdoms = [
-            { kanji: "侍", quote: "«Даже если самураю придется умереть, он должен умереть с мечом в руке.» — Миямото Мусаси" },
-            { kanji: "絆", quote: "«Упади семь раз, поднимись восемь.» — Японская пословица" },
-            { kanji: "忍", quote: "«Побеждает тот, кто побеждает самого себя.» — Дзен-мудрость" },
-            { kanji: "桜", quote: "«Цветок прекрасен потому, что он не вечен.» — Моно-но аварэ" },
-            { kanji: "道", quote: "«Сделай сегодня то, что другие не хотят, завтра будешь жить так, как другие не могут.»" },
-            { kanji: "静", quote: "«Тишина внутри тебя — это истинный источник силы в бушующем мире.»" }
+        const quotes = [
+            { symbol: "🌸", text: "\"In the cherry blossom's shade there is no such thing as a stranger.\" — Kobayashi Issa" },
+            { symbol: "🌿", text: "\"Fall seven times, stand up eight.\" — Japanese Proverb" },
+            { symbol: "🍵", text: "\"The art of peace begins with yourself.\" — Morihei Ueshiba" },
+            { symbol: "🌙", text: "\"The moon does not rival the sun, it simply shines in its own time.\" — Zen Wisdom" },
+            { symbol: "🍃", text: "\"Walk softly, breathe deeply, let go.\" — Traditional Wisdom" }
         ];
 
-        function getNewWisdom() {
-            const randomIndex = Math.floor(Math.random() * wisdoms.length);
-            const selected = wisdoms[randomIndex];
-
-            document.getElementById("kanji-symbol").innerText = selected.kanji;
-            document.getElementById("quote-display").innerText = selected.quote;
+        function nextQuote() {
+            const rand = Math.floor(Math.random() * quotes.length);
+            document.querySelector('.sakura-icon').innerText = quotes[rand].symbol;
+            document.getElementById('quote-display').innerText = quotes[rand].text;
         }
     </script>
 </body>
