@@ -3,104 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Traditional Japanese Garden & Sakura</title>
+    <title>Samurai Guess - Bushido Number Trials</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            background-color: #fdfbf7;
-            color: #4a403a;
-            font-family: 'Georgia', serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+        :root {
+            --bg-dark: #0f0a12;
+            --bg-card: #18111e;
+            --pink-neon: #ff2a85;
+            --pink-soft: #ff77b2;
+            --pink-pale: #ffb8d9;
+            --gold: #f3c669;
+            --text-main: #fce8f3;
+            --text-muted: #b8a0b3;
+            --border-color: rgba(255, 42, 133, 0.3);
+            --shadow-neon: 0 0 25px rgba(255, 42, 133, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            overflow: hidden;
+            padding: 0;
         }
-        .card {
-            background-color: #fff9f5;
-            border: 1px solid #e8d3c7;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(180, 140, 130, 0.15);
-            text-align: center;
-            width: 480px;
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Noto Serif JP', serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
         }
-        .sakura-icon {
-            font-size: 42px;
-            color: #e07a93;
-            margin-bottom: 15px;
-        }
-        h1 {
-            font-size: 20px;
-            color: #5c4033;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
-        .quote {
-            font-size: 15px;
-            line-height: 1.8;
-            color: #6b5b52;
-            min-height: 80px;
-            margin-bottom: 30px;
-            border-left: 3px solid #e07a93;
-            padding-left: 15px;
-            text-align: left;
-            font-style: italic;
-        }
-        button {
-            background-color: #e07a93;
-            color: #ffffff;
-            border: none;
-            padding: 12px 24px;
-            font-family: 'Georgia', serif;
-            font-size: 14px;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: background 0.3s ease;
+
+        /* Cherry blossom petals animation layer */
+        .sakura-container {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
         }
-        button:hover {
-            background-color: #c9657f;
+
+        .petal {
+            position: absolute;
+            background: linear-gradient(135deg, var(--pink-soft), var(--pink-neon));
+            border-radius: 150% 0 150% 0;
+            animation: fall linear infinite;
+            opacity: 0.6;
         }
-        .footer {
-            margin-top: 25px;
-            font-size: 12px;
-            color: #b09b90;
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .game-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        .game-card {
+            background-color: var(--bg-card);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: var(--shadow-neon);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Samurai decorative stamp / kanji accent */
+        .game-card::before {
+            content: "武士道";
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.2rem;
+            color: var(--pink-neon);
+            opacity: 0.15;
+            letter-spacing: 4px;
+            pointer-events: none;
+        }
+
+        .title-area {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .title-area h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--pink-pale);
+            text-transform: uppercase;
             letter-spacing: 2px;
+            margin-bottom: 6px;
+            text-shadow: 0 0 10px rgba(255, 119, 178, 0.4);
         }
-    </style>
-</head>
-<body>
 
-    <div class="card">
-        <div class="sakura-icon">🌸</div>
-        <h1>Spring & Sakura / 桜</h1>
-        
-        <div class="quote" id="quote-display">
-            "In the cherry blossom's shade there is no such thing as a stranger." — Kobayashi Issa
-        </div>
-
-        <button onclick="nextQuote()">Discover Wisdom / 禅</button>
-        
-        <div class="footer">TRADITIONAL JAPAN</div>
-    </div>
-
-    <script>
-        const quotes = [
-            { symbol: "🌸", text: "\"In the cherry blossom's shade there is no such thing as a stranger.\" — Kobayashi Issa" },
-            { symbol: "🌿", text: "\"Fall seven times, stand up eight.\" — Japanese Proverb" },
-            { symbol: "🍵", text: "\"The art of peace begins with yourself.\" — Morihei Ueshiba" },
-            { symbol: "🌙", text: "\"The moon does not rival the sun, it simply shines in its own time.\" — Zen Wisdom" },
-            { symbol: "🍃", text: "\"Walk softly, breathe deeply, let go.\" — Traditional Wisdom" }
-        ];
-
-        function nextQuote() {
-            const rand = Math.floor(Math.random() * quotes.length);
-            document.querySelector('.sakura-icon').innerText = quotes[rand].symbol;
-            document.getElementById('quote-display').innerText = quotes[rand].text;
+        .title-area p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
         }
-    </script>
-</body>
-</html>
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--pink-pale);
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(15, 10, 18, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-family: 'Noto Serif JP', serif;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.
